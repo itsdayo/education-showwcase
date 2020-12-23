@@ -4,12 +4,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import App from './../App';
 import WelcomePage from './WelcomePage'
+import HomePage from './HomePage'
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={WelcomePage} />
-      {/* <Route path="/store/:storeId" component={App} /> */}
+      <Route exact path="/about" component={HomePage} /> 
     </Switch>
   </BrowserRouter>
 );

@@ -1,12 +1,10 @@
 import React,{useState, useEffect} from 'react';
 
-
-import styled from 'styled-components'
 import {RouteComponentProps} from 'react-router-dom'
+import styled from 'styled-components'
+
 interface Props extends RouteComponentProps {}
-
-
-const WelcomePage: React.FC<Props>=({history})=> {
+const HomePage:React.FC<Props>=({location})=> {
     // const size = useWindowSize()
 //   const panelMargin=  (size.width-360)/2
   
@@ -53,22 +51,20 @@ const Button = styled.button`
   
   
 `;
-const handleSubmit=()=>{
-    history.push({
-    pathname:'/about',
-    state:{name:'bob'}
-})
-}
+console.log(location)
   return (
+      
+   <div>
    <Main>
 <div className='greeting'>Hi there! Welcome to your education showcase.</div>
 <div className='instruction'>Type your name and click "Enter" below to begin!</div>
-<Form onSubmit={handleSubmit}>
+<Form>
     <Input type="text"/>
 <br/>
-<Button type='submit'>Enter</Button>
+<Button>Enter</Button>
 </Form>
    </Main>
+   </div>
   );
 }
 
@@ -102,4 +98,4 @@ const handleSubmit=()=>{
 //     return windowSize;
 //   }
 
-export default WelcomePage;
+export default HomePage;
