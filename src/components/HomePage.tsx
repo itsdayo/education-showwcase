@@ -1,9 +1,20 @@
 import React,{useState, useEffect} from 'react';
 
-import {RouteComponentProps} from 'react-router-dom'
+import {RouteComponentProps, withRouter} from 'react-router-dom'
 import styled from 'styled-components'
+import {Location} from 'history'
 
-interface Props extends RouteComponentProps {}
+type StateType={
+    name:string
+}
+type LocationProps = Location<StateType>;
+// interface Props extends RouteComponentProps<{},{}> ,StateType{
+// }
+
+interface Props  {
+    location: LocationProps;
+    
+ }
 const HomePage:React.FC<Props>=({location})=> {
     // const size = useWindowSize()
 //   const panelMargin=  (size.width-360)/2
@@ -11,91 +22,95 @@ const HomePage:React.FC<Props>=({location})=> {
 
 const Main = styled.div`
 
-margin-top:15%;
+
 display: flex;
 align-items: center;
 justify-content: center;
-flex-direction:column;
+flex-direction:row;
 
-.greeting{
-    font-weight:bold;
-}
-.instruction{
-    font-weight:bold;
-    margin-top:70px;
-}
-`;
+`
+const Title = styled.h4`
 
-const Form =styled.form`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction:column;
-margin-top:10px;
+
+margin-top:-320px;
+margin-left:300px;
+
+
+position:absolute;
+align-self:'center';
 
 
 `;
-const Input = styled.input`
 
-margin-top:5px;
-width:350px;
-height:25px;
-box-shadow:0px 3px lightgray;
+const FullBio = styled.div`
+position: fixed;
+width:830px;
+background:lightgray;
+margin-left:340px;
+margin-top:200px;
+min-height: 310px;
+
+
+
+
 `;
+
+
+const SchoolList =styled.form`
+ background:lightgray;
+    
+    margin-right:850px;
+    margin-top:10%;
+    max-width:230px;
+    position:'absolute';
+    min-height:370px;
+    display: flex;
+    padding-top:10px;
+
+
+
+    .school-name{
+        margin: 0 auto;
+        width:50%;
+    font-size:13px;
+    
+    }
+
+`;
+
+
+
 const Button = styled.button`
   background: lightgray;
-  margin-top:5px;
+  
   height:40px;
-  width:90px;
-  font-size:20px;
+  width:170px;
+  font-size:15px;
+  position:absolute;
+  margin-top:-230px;
+  margin-left:300px;
   
   
 `;
-console.log(location)
+
+
   return (
-      
-   <div>
-   <Main>
-<div className='greeting'>Hi there! Welcome to your education showcase.</div>
-<div className='instruction'>Type your name and click "Enter" below to begin!</div>
-<Form>
-    <Input type="text"/>
-<br/>
-<Button>Enter</Button>
-</Form>
+    <React.Fragment>
+    
+    <Main>  
+    <SchoolList> <span className="school-name">Hi there! Welcome to your education showcase. </span></SchoolList> 
+    <Title >Welcome to {location.state.name}'s education page  </Title>
+    <Button>Add new education</Button>
+   <FullBio>
+<div className='main-panel'>Type your name and click "Enter" below to begin!</div>
+
+   </FullBio>
    </Main>
-   </div>
+   </React.Fragment>
+  
   );
 }
 
-// function useWindowSize() {
-//     // Initialize state with undefined width/height so server and client renders match
-//     const [windowSize, setWindowSize] = useState({
-//       width: 0,
-//       height: 0,
-//     });
-  
-//     useEffect(() => {
-//       // Handler to call on window resize
-//       function handleResize() {
-//         // Set window width/height to state
-//         setWindowSize({
-//           width: window.innerWidth,
-//           height: window.innerHeight,
-//         });
-//       }
-      
-//       // Add event listener
-//       window.addEventListener("resize", handleResize);
-      
-//       // Call handler right away so state gets updated with initial window size
-//       handleResize();
-      
-//       // Remove event listener on cleanup
-//       return () => window.removeEventListener("resize", handleResize);
-//     }, []); // Empty array ensures that effect is only run on mount
-  
-//     return windowSize;
-//   }
+
 
 export default HomePage;

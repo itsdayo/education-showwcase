@@ -7,10 +7,9 @@ interface Props extends RouteComponentProps {}
 
 
 const WelcomePage: React.FC<Props>=({history})=> {
-    // const size = useWindowSize()
-//   const panelMargin=  (size.width-360)/2
-  
 
+  
+const [name, setName] = useState("");
 const Main = styled.div`
 
 margin-top:15%;
@@ -53,18 +52,19 @@ const Button = styled.button`
   
   
 `;
-const handleSubmit=()=>{
+const handleSubmit=(event:any)=>{
     history.push({
     pathname:'/about',
-    state:{name:'bob'}
+    state:{name:name}
 })
+event.preventDefault();
 }
   return (
    <Main>
 <div className='greeting'>Hi there! Welcome to your education showcase.</div>
 <div className='instruction'>Type your name and click "Enter" below to begin!</div>
 <Form onSubmit={handleSubmit}>
-    <Input type="text"/>
+    <Input autoFocus value={name} onChange={(e)=>setName(e.target.value)} type="text"/>
 <br/>
 <Button type='submit'>Enter</Button>
 </Form>
@@ -72,34 +72,5 @@ const handleSubmit=()=>{
   );
 }
 
-// function useWindowSize() {
-//     // Initialize state with undefined width/height so server and client renders match
-//     const [windowSize, setWindowSize] = useState({
-//       width: 0,
-//       height: 0,
-//     });
-  
-//     useEffect(() => {
-//       // Handler to call on window resize
-//       function handleResize() {
-//         // Set window width/height to state
-//         setWindowSize({
-//           width: window.innerWidth,
-//           height: window.innerHeight,
-//         });
-//       }
-      
-//       // Add event listener
-//       window.addEventListener("resize", handleResize);
-      
-//       // Call handler right away so state gets updated with initial window size
-//       handleResize();
-      
-//       // Remove event listener on cleanup
-//       return () => window.removeEventListener("resize", handleResize);
-//     }, []); // Empty array ensures that effect is only run on mount
-  
-//     return windowSize;
-//   }
 
 export default WelcomePage;
