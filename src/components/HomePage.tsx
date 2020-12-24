@@ -3,23 +3,32 @@ import React,{useState, useEffect} from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import styled from 'styled-components'
 import {Location} from 'history'
+import {useSelector, useDispatch} from 'react-redux'
+import {SchoolState} from './reducers/schools'
+import {addSchool} from './actions'
+import Modal from 'react-modal';
 
 type StateType={
     name:string
 }
 type LocationProps = Location<StateType>;
-// interface Props extends RouteComponentProps<{},{}> ,StateType{
-// }
+
 
 interface Props  {
     location: LocationProps;
     
  }
 const HomePage:React.FC<Props>=({location})=> {
+    const [modalIsOpen,setIsOpen] = React.useState(false);
+    
     // const size = useWindowSize()
 //   const panelMargin=  (size.width-360)/2
-  
+  //const schools = useSelector<SchoolState, SchoolState['schools']>((state)=>state.schoolReducer.schools)
+ // const schools = useSelector((state)=>state)
+const schools:any= useSelector((state)=>state)
 
+const dispatch = useDispatch()
+  console.log(schools.schoolReducer.schools)
 const Main = styled.div`
 
 
@@ -93,14 +102,56 @@ const Button = styled.button`
   
 `;
 
+function addingSchool(){
+    setIsOpen(true);
 
+}
+function closeModal(){
+    setIsOpen(false);
+  }
+  
+
+const customStyles = {
+    content : {
+      top                   : '40%',
+      left                  : '62%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      transform             : 'translate(-50%, -50%)'
+    }
+  };
+ 
   return (
     <React.Fragment>
     
+    <Modal
+          isOpen={modalIsOpen}
+          
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+
+          
+        
+          <div>I am a modal</div>
+          <form >
+            
+            <input />
+            <button>tab navigation</button>
+            <button>stays</button>
+            <button>inside</button>
+            <button>the modal</button>
+          </form>
+          <button onClick={closeModal}>close</button>
+        </Modal>
+
+
     <Main>  
     <SchoolList> <span className="school-name">Hi there! Welcome to your education showcase. </span></SchoolList> 
     <Title >Welcome to {location.state.name}'s education page  </Title>
-    <Button>Add new education</Button>
+    <Button onClick={addingSchool}>Add new education</Button>
    <FullBio>
 <div className='main-panel'>Type your name and click "Enter" below to begin!</div>
 
