@@ -24,10 +24,12 @@ const HomePage: React.FC<Props> = ({ location, options }) => {
   const [error, setError] = useState(null);
   const [schoolName, setSchoolName] = React.useState([]);
   useEffect(() => {
+    // retrieving data from the university api
     fetch("http://universities.hipolabs.com/search?")
       .then((res) => res.json())
       .then(
         (result) => {
+          // push the name of the university to an empty array
           let schoolNameArray = [] as any;
           for (let i = 0; i <= result.length - 1; i++) {
             schoolNameArray.push(result[i].name);
@@ -174,11 +176,14 @@ const HomePage: React.FC<Props> = ({ location, options }) => {
   function modalSaveInfo(school: any) {
     let schoolArray = school;
     setIsOpen(false);
+    //set the selected school name value to the name key to be pass to global state 
     schoolArray.name = schoolName;
     
     dispatch(addSchool(school));
   }
   function schoolSelectorChange(name: any, typedSchool: any) {
+    
+    //push the selected university from the AutoComplete component to state
     setSchoolName(name);
    
   }

@@ -53,7 +53,8 @@ const Button = styled.button`
   
 `;
 const handleSubmit=(event:any)=>{
-    history.push({
+  //navigate to the about page with the name entered 
+  history.push({
     pathname:'/about',
     state:{name:name}
 })

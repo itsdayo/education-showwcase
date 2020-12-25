@@ -21,7 +21,7 @@ const [userInput, setUserInput]=useState("")
 
     
     const userInput = e.currentTarget.value;
-    
+    //find the school that matches the user input
     const filteredOptions = options.filter(
       (optionName) =>
         optionName.toLowerCase().indexOf(userInput.toLowerCase()) > -1

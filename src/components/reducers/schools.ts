@@ -28,10 +28,14 @@ export const schoolReducer=(state:SchoolState | undefined = initialState, action
   switch (action.type) { 
     
     case ADD_SCHOOL:
-        return {...state, schools:[...state.schools,action.payload]}
+      let arr = state.schools as any
+      //move newly created school bio to the top of the array
+      arr.unshift(action.payload)
+
+      return { ...state, schools: arr }    
     case DELETE_SCHOOL:
       let arr1 = state.schools as any
-            
+      //find the index of selected array to delete and delete it      
       let m = arr1.indexOf(action.payload)
             arr1.splice(m, 1)
     
