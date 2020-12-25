@@ -1,9 +1,20 @@
 import { ADD_SChOOL } from "../actions"
 
 export interface SchoolState{
-  schools:string[],
+  schools:SchoolType[],
 }
+type SchoolType={
+  name: string,
+  degree:string,
+  studyField:string,
+  yearStarted: number,
+  yearEnded:number,
+  GPA:number,
+  desc:string
 
+
+
+}
 
 const initialState={
   schools:[]
