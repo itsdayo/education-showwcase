@@ -1,4 +1,5 @@
-import { ADD_SChOOL } from "../actions"
+
+import {ADD_SCHOOL,DELETE_SCHOOL,SchoolActionTypes} from './../state/types'
 
 export interface SchoolState{
   schools:SchoolType[],
@@ -19,15 +20,23 @@ type SchoolType={
 const initialState={
   schools:[]
 }
-type Action = {type:'ADD_SCHOOL', payload:string}
 
-export const schoolReducer=(state:SchoolState | undefined = initialState, action:Action)=>{
+
+export const schoolReducer=(state:SchoolState | undefined = initialState, action:SchoolActionTypes)=>{
   
   
   switch (action.type) { 
     
-    case ADD_SChOOL:
+    case ADD_SCHOOL:
         return {...state, schools:[...state.schools,action.payload]}
+    case DELETE_SCHOOL:
+      let arr1 = state.schools as any
+            
+      let m = arr1.indexOf(action.payload)
+            arr1.splice(m, 1)
+    
+            return { ...state, schools: arr1 }
+   
 
     default:
         return state;

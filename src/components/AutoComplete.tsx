@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
 
-
 import { Formik, Field, Form, } from "formik";
 import styled from 'styled-components'
 interface Props  {
@@ -53,7 +52,7 @@ const [userInput, setUserInput]=useState("")
     if (e.keyCode === 13) {
         setActiveOption(0)
         setShowOptions(false)
-        //setUserInput(filteredOptions[activeOption])
+        setUserInput(filteredOptions[activeOption])
       
     } else if (e.keyCode === 38) {
       if (activeOption === 0) {
