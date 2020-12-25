@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Showwcase Education Experience 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a basic web application to display a list of a user's education. Written in typescriot and react navigate from the welcome page to the homepage and add past education.
+
 
 ## Available Scripts
 
